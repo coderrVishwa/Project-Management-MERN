@@ -44,7 +44,7 @@ router.post("/login", async (req, res) => {
       throw new Error("Invalid password");
     }
 
-    const token = jwt.sign({ userId: user._id }, process.env.jwt_secret, {
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
 
@@ -65,7 +65,7 @@ router.get("/get-logged-in-user", authMiddleware, async (req, res) => {
   try {
     const user = await User.findOne({ _id: req.body.userId });
 
-    user.password = undefined;
+    user.password = undefined;  // Do not send the password
 
     res.send({
       success: true,

@@ -2,26 +2,20 @@ const mongoose = require("mongoose");
 
 const taskSchema = new mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: true,
-    },
-    description: {
-      type: String,
-      required: true,
-    },
+    name: { type: String, required: true },
+    description: { type: String, required: true },
     status: {
       type: String,
       required: true,
-      default: "pending",
+      default: "pending", // 👈 default value, good
     },
     project: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "projects",
+      ref: "projects", // 👈 should match the model name
     },
     assignedTo: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "users",
+      ref: "users", // 👈 should match the model name
     },
     assignedBy: {
       type: mongoose.Schema.Types.ObjectId,
@@ -29,11 +23,10 @@ const taskSchema = new mongoose.Schema(
     },
     attachments: {
       type: Array,
-      default : []
+      default: [],
     },
   },
   { timestamps: true }
 );
-
 
 module.exports = mongoose.model("tasks", taskSchema);

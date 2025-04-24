@@ -4,7 +4,7 @@ const notificationsSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "users",
+      ref: "users", // ✅ references the "users" collection
     },
     title: {
       type: String,
@@ -24,7 +24,7 @@ const notificationsSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true,
+    timestamps: true, // ✅ auto adds createdAt and updatedAt
   }
 );
 
